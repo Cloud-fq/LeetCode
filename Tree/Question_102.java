@@ -5,20 +5,15 @@ class Solution {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            List<Integer> tmp = new ArrayList<>();
+            List<Integer> cur = new ArrayList<>();
             int n = queue.size();
-            for (int i = 1; i <= n; i++) {
-                TreeNode node = queue.poll();
-                assert node != null;
-                tmp.add(node.val);
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
+            for (int i = 0; i < n; i++) {
+                TreeNode tmp = queue.poll();
+                cur.add(tmp.val);
+                if (tmp.left != null) queue.offer(tmp.left);
+                if (tmp.right != null) queue.offer(tmp.right);
             }
-            ans.add(tmp);
+            ans.add(cur);
         }
         return ans;
     }
